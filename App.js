@@ -8,8 +8,8 @@ export default function App() {
         <MapView
           style={styles.mapStyle}
           initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: 40.0347413,
+            longitude: -75.3382572,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
@@ -17,14 +17,26 @@ export default function App() {
           <Marker
             draggable
             coordinate={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: 40.0347413,
+              longitude: -75.3382572
             }}
             onDragEnd={
               (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
             }
-            title={'Test Marker'}
-            description={'This is a description of the marker'}
+            title={'Bartley Hall'}
+            description={'Villanova School of Business'}
+          />
+          <Marker
+            draggable
+            coordinate={{
+              latitude: 40.03791333324271, 
+              longitude: -75.34316532634855
+            }}
+            onDragEnd={
+              (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+            }
+            title={'Mendel Science Center'}
+            description={'Science Labs'}
           />
         </MapView>
       </View>
