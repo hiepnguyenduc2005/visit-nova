@@ -15,7 +15,7 @@ export default function Step({navigation, route}) {
             : null}
             <Button title="Go to Map"
                 onPress={() => navigation.navigate('MapNav', {'array': array, 
-                'initialLocation': None })}/>
+                'initialLocation': {'latitude': item.latitude, 'longitude': item.longitude} })}/>
         </View>
     );
 }
