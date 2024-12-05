@@ -6,7 +6,7 @@ import * as Location from 'expo-location'; // Use expo-location for permissions
 import Home from './Home';
 import MapView from './MapNav';
 import Listings from './Listings';
-import Step from './Step';
+import Stop from './Stop';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +42,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="MapNav" component={MapView} />
         <Stack.Screen name="Listings" component={Listings} />
-        <Stack.Screen name="Step" component={Step} />
+        <Stack.Screen name="Stop" component={Stop} />
       </Stack.Navigator>
     </NavigationContainer>
   );

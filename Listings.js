@@ -11,7 +11,7 @@ export default function Listings ({ route, navigation }) {
             renderItem={({item}) => 
                 <View style={styles.border} >
                     <Image source={{uri: item.images[0]}} style={{width: 100, height: 100}}/>
-                    <Text style={styles.itemName}  onPress={() => navigation.navigate('Step', {'id': item.id, 'array': array})}>
+                    <Text style={styles.itemName}  onPress={() => navigation.navigate('Stop', {'id': item.id, 'array': array})}>
                       {item.id}. {item.name}
                     </Text>
                 </View>

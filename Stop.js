@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 
-export default function Step({navigation, route}) {
+export default function Stop({navigation, route}) {
     const { array, id } = route.params;
     const item = array.find(item => item.id === id);
     return (

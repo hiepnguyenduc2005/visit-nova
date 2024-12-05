@@ -60,9 +60,13 @@ export default function MapNav({ route, navigation }) {
                 title={item.name}
                 description={item.description}
                 onCalloutPress={() =>
-                  navigation.navigate('Step', { array: array, id: item.id })
+                  navigation.navigate('Stop', { array: array, id: item.id })
                 }
-              />
+              >
+                <View style={styles.markerContainer}>
+                  <Text style={styles.markerText}>{item.id}</Text>
+                </View>
+              </Marker>
             ))}
         </MapView>
       </View>
@@ -71,10 +75,84 @@ export default function MapNav({ route, navigation }) {
 }
 
 const mapStyle = [
-  { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-  { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-  { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-  // Additional styles...
+  {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+  {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+  {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+  {
+    featureType: 'administrative.locality',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#d59563'}],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#d59563'}],
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'geometry',
+    stylers: [{color: '#263c3f'}],
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#6b9a76'}],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{color: '#38414e'}],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{color: '#212a37'}],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#9ca5b3'}],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [{color: '#746855'}],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [{color: '#1f2835'}],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#f3d19c'}],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [{color: '#2f3948'}],
+  },
+  {
+    featureType: 'transit.station',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#d59563'}],
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{color: '#17263c'}],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#515c6d'}],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.stroke',
+    stylers: [{color: '#17263c'}],
+  },
 ];
 
 const styles = StyleSheet.create({
@@ -93,5 +171,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  markerContainer: {
+    backgroundColor: '#FF5E5E', 
+    borderRadius: 15, 
+    width: 25, 
+    height: 25, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+  },
+  markerText: {
+    color: '#F9F9F9', 
+    fontWeight: 'bold', 
+    fontSize: 12, 
   },
 });
