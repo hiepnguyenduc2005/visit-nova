@@ -5,7 +5,8 @@ import * as Location from 'expo-location';
 
 export default function MapNav({ route, navigation }) {
   const array = route.params.array;
-  const [currentLocation, setCurrentLocation] = useState(null);
+  const defaultLocation = {'latitude': 40.0347413, 'longitude': -75.3382572};
+  const [currentLocation, setCurrentLocation] = useState(defaultLocation);
   const initialLocation = route.params.initialLocation || null;
 
   useEffect(() => {
