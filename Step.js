@@ -1,12 +1,21 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 
 export default function Step({navigation, route}) {
-    const item = route.params;
-    
+    const { array, id } = route.params;
+    const item = array.find(item => item.id === id);
     return (
         <View style={styles.container}>
             <Text style={styles.itemName}>{item.id}. {item.name}</Text>
             <Text style={styles.itemDesc}>{item.description}</Text>
+            {item.images ? item.images.map((image, index) => (
+                <View key={index}>
+                    <Image source={{uri: image}} style={{width: 200, height: 200}}/>
+                </View>
+            ))
+            : null}
+            <Button title="Go to Map"
+                onPress={() => navigation.navigate('MapNav', {'array': array, 
+                'initialLocation': None })}/>
         </View>
     );
 }

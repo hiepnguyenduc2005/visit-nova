@@ -18,14 +18,14 @@ export default function Home({navigation, route}) {
                 images: ['https://djkeating.com/wp-content/uploads/2020/01/01.jpg'],        
             },
         ];
-    
     return (
         <View style={styles.container}>
           <Text>Home Screen</Text>
           <Button title="Listings" 
-            onPress={() => navigation.navigate('Listings', array)}/>
+            onPress={() => navigation.navigate('Listings', {'array': array})}/>
           <Button title="MapNav"
-            onPress={() => navigation.navigate('MapNav', array)}/>
+            onPress={() => navigation.navigate('MapNav', {'array': array, 
+            'initialLocation': {'latitude': 40.0347413, 'longitude': -75.3382572}})}/>
         </View>
     );
 }

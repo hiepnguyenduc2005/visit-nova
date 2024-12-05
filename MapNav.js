@@ -1,23 +1,55 @@
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
+import * as Location from 'expo-location';
 
 export default function MapNav({ route, navigation }) {
-  const listData = route.params;
-  console.log(listData);
+  const { array, initialLocation } = route.params;
+  const [currentLocation, setCurrentLocation] = useState(initialLocation);
+
+  useEffect(() => {
+    const getUserLocation = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === 'granted') {
+        let location = await Location.getCurrentPositionAsync({});
+        setCurrentLocation({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        });
+      }
+    };
+    getUserLocation();
+  }, []);
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <MapView
           style={styles.mapStyle}
           initialRegion={{
-            latitude: 40.0347413,
-            longitude: -75.3382572,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: initialLocation.latitude || currentLocation.latitude,
+            longitude: initialLocation.longitude || currentLocation.longitude,
+            latitudeDelta: 0.00922,
+            longitudeDelta: 0.00421,
           }}
-          customMapStyle={mapStyle}>
-          {listData ? listData.map((item, index) => (
-            <Marker
+          showsUserLocation={true} 
+          followsUserLocation={true} 
+          customMapStyle={mapStyle}
+          >
+          {array ? array.map((item, index) => (
+          //   <Marker
+          //   key={item.id}
+          //   coordinate={{
+          //     latitude: item.latitude,
+          //     longitude: item.longitude,
+          //   }}
+          //   draggable
+          //   onDragEnd={(e) => alert(JSON.stringify(e.nativeEvent.coordinate))}
+          // >
+          //   <View style={styles.customMarker}>
+          //     <Text style={styles.markerText}>{item.id}</Text>
+          //   </View>
+          // </Marker>
+          <Marker
               key={index}
               draggable
               coordinate={{
@@ -29,7 +61,8 @@ export default function MapNav({ route, navigation }) {
               }
               title={item.name}
               description={item.description}
-            />
+              onCalloutPress={() => navigation.navigate('Step', { array: array, id: item.id })}              
+          />
           ))
         : null}
         </MapView>
@@ -118,6 +151,7 @@ const mapStyle = [
     stylers: [{color: '#17263c'}],
   },
 ];
+
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -134,5 +168,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  customMarker: {
+    backgroundColor: 'red',
+    borderRadius: 20,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  markerText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
