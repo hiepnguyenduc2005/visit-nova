@@ -1,24 +1,20 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { firestore } from './firebase';
+import { collection, getDocs } from "@firebase/firestore";
+import { useEffect, useState } from 'react';
 
 export default function Home({navigation, route}) {
+    const [array, setArray] = useState([]);
 
-    const array = [
-            {id: 1,         
-                name: 'Bartley Hall',
-                latitude: 40.0347413,
-                longitude: -75.3382572,
-                description: 'Villanova School of Business',
-                images: ['https://villanovan.com/wp-content/uploads/2017/01/268198c67ec76e22fc55dd1aaeef434d-2.jpg'],
-            },
-            {id: 8,
-                name: 'Mendel Science Center',
-                latitude: 40.03791333324271,
-                longitude: -75.34316532634855,
-                description: 'Science Labs',
-                images: ['https://djkeating.com/wp-content/uploads/2020/01/01.jpg'],        
-            },
-        ];
-    
+    useEffect(() => {
+        const fetchCollection = async () => {
+            const snapshot = await getDocs(collection(firestore, "locations"));
+            const docs = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+            setArray(docs);
+        }
+        fetchCollection();
+    }, []);
+
     return (
         <View style={styles.container}>
           <Text>Home Screen</Text>
