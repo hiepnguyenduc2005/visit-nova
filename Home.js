@@ -23,7 +23,7 @@ export default function Home({ navigation, route }) {
       style={styles.backgroundImage}
     >
       <View style={styles.overlay}>
-        <Text style={styles.title}>Welcome to Villanova Campus Guide</Text>
+        <Text style={styles.title}>Welcome to VISIT NOVA</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Listings', { array })}
