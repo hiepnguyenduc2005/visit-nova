@@ -24,10 +24,10 @@ export default function MapNav({ route, navigation }) {
   }, []);
 
   const region = initialLocation || currentLocation;
-  if (initialLocation) {
-    console.log('initialLocation', initialLocation);
-  }
-  console.log('region', region);
+  // if (initialLocation) {
+  //   console.log('initialLocation', initialLocation);
+  // }
+  // console.log('region', region);
 
   if (!region) {
     return (

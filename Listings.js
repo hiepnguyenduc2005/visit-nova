@@ -1,23 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { FlatList, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-export default function Listings ({ route, navigation }) {
-    const array = route.params.array;
-    // console.log(array);
-    return (
-        <View style={styles.container}>
-            <FlatList
-            data={array}
-            renderItem={({item}) => 
-                <View style={styles.border} >
-                    <Image source={{uri: item.images[0]}} style={{width: 100, height: 100}}/>
-                    <Text style={styles.itemName}  onPress={() => navigation.navigate('Stop', {'id': item.id, 'array': array})}>
-                      {item.id}. {item.name}
-                    </Text>
-                </View>
-            } />           
-        </View>
-    );
+export default function Listings({ route, navigation }) {
+  const array = route.params.array;
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={array}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={[
+              styles.border,
+              {
+                backgroundColor: index % 2 === 0 ? 'white' : '#00274d'
+              },
+            ]}
+            onPress={() => navigation.navigate('Stop', { id: item.id, array: array })}
+          >
+            <Image source={{ uri: item.images[0] }} style={styles.image} />
+            <View style={styles.textContainer}>
+              <Text
+                style={[
+                  styles.itemName,
+                  { color: index % 2 === 0 ? '#00274d' : 'white' }, // Dark blue font for even, white font for odd
+                ]}
+                numberOfLines={2}
+              >
+                {item.id}. {item.name}
+              </Text>
+              <Text
+                style={[
+                  styles.itemDesc,
+                  { color: index % 2 === 0 ? '#00274d' : 'white' }
+                ]}
+              >
+                {item.subtitle}
+              </Text>
+            </View>
+          </TouchableOpacity>        
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -26,23 +52,30 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 50,
   },
+  image: {
+    width: 100,
+    height: 100,
+    marginRight: 10,
+  },
+  textContainer: {
+    flex: 1,
+  },
   itemName: {
-    padding: 10,
     fontSize: 18,
-    height: 44,
+    fontWeight: 'bold',
+    color: '#000',
   },
   itemDesc: {
-    padding: 10,
-    fontSize: 10,
-    height: 44,
+    fontSize: 14,
+    color: '#555',
+    marginTop: 4,
   },
   border: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: "gray",
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
+    // borderBottomWidth: 1,
+    borderBottomColor: 'gray',
   },
 });
-  
