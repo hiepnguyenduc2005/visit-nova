@@ -24,6 +24,10 @@ export default function MapNav({ route, navigation }) {
   }, []);
 
   const region = initialLocation || currentLocation;
+  if (initialLocation) {
+    console.log('initialLocation', initialLocation);
+  }
+  console.log('region', region);
 
   if (!region) {
     return (
@@ -59,7 +63,7 @@ export default function MapNav({ route, navigation }) {
                 }}
                 onDragEnd={(e) => alert(JSON.stringify(e.nativeEvent.coordinate))}
                 title={item.name}
-                description={item.description}
+                description={item.subtitle}
                 onCalloutPress={() =>
                   navigation.navigate('Stop', { array: array, id: item.id })
                 }

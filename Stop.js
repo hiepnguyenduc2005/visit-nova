@@ -6,6 +6,7 @@ export default function Stop({navigation, route}) {
     return (
         <View style={styles.container}>
             <Text style={styles.itemName}>{item.id}. {item.name}</Text>
+            <Text style={styles.itemDesc}>{item.subtitle}</Text>
             <Text style={styles.itemDesc}>{item.description}</Text>
             {item.images ? item.images.map((image, index) => (
                 <View key={index}>
