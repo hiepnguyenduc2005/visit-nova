@@ -89,8 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#00274d',
     marginTop: 10, 
-    // textAlign: 'center',
-    flex: 1,
+    marginHorizontal: 20, 
   },  
   buttonContainer: {
     marginTop: 20,
