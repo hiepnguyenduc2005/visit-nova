@@ -6,13 +6,14 @@ export default function Stop({navigation, route}) {
     return (
         <View style={styles.container}>
             <Text style={styles.itemName}>{item.id}. {item.name}</Text>
-            <Text style={styles.itemDesc}>{item.description}</Text>
+            <Text style={styles.itemSub}>{item.subtitle}</Text>
             {item.images ? item.images.map((image, index) => (
                 <View key={index}>
                     <Image source={{uri: image}} style={{width: 200, height: 200}}/>
                 </View>
             ))
             : null}
+            <Text style={styles.itemDesc}>{item.description}</Text>
             <Button title="Go to Map"
                 onPress={() => navigation.navigate('MapNav', {'array': array, 
                 'initialLocation': {'latitude': item.latitude, 'longitude': item.longitude} })}/>
@@ -31,12 +32,16 @@ export default function Stop({navigation, route}) {
       fontSize: 18,
       height: 44,
     },
-    itemDesc: {
+    itemSub: {
       padding: 10,
-      fontSize: 10,
+      fontSize: 12,
       height: 44,
     },
-      border: {
+    itemDesc: {
+      padding: 10,
+      fontSize: 15,
+    },
+    border: {
       borderWidth: 1,
       borderColor: "gray",
     },
