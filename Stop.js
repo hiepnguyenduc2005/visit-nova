@@ -14,6 +14,7 @@ export default function Stop({navigation, route}) {
                 </View>
             ))
             : null}
+            <Text style={styles.itemDesc}>{item.description}</Text>
             <Button title="Go to Map"
                 onPress={() => navigation.navigate('MapNav', {'array': array, 
                 'initialLocation': {'latitude': item.latitude, 'longitude': item.longitude} })}/>
@@ -32,12 +33,16 @@ export default function Stop({navigation, route}) {
       fontSize: 18,
       height: 44,
     },
-    itemDesc: {
+    itemSub: {
       padding: 10,
-      fontSize: 10,
+      fontSize: 12,
       height: 44,
     },
-      border: {
+    itemDesc: {
+      padding: 10,
+      fontSize: 15,
+    },
+    border: {
       borderWidth: 1,
       borderColor: "gray",
     },
