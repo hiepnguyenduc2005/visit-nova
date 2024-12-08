@@ -61,7 +61,6 @@ export default function MapNav({ route, navigation }) {
                   latitude: item.latitude,
                   longitude: item.longitude,
                 }}
-                onDragEnd={(e) => alert(JSON.stringify(e.nativeEvent.coordinate))}
                 title={item.name}
                 description={item.subtitle}
                 onCalloutPress={() =>
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   markerContainer: {
-    backgroundColor: '#FF5E5E', 
+    backgroundColor: '#00205B', 
     borderRadius: 15, 
     width: 25, 
     height: 25, 
